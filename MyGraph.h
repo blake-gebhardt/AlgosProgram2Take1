@@ -15,6 +15,9 @@ public:
         int point1;
         int point2;
         float weight;
+        friend bool operator< (const edge& first, const edge& second){
+            return first.weight < second.weight;
+        };
     };
 
     //array of <start, end, weight> values
@@ -54,6 +57,11 @@ public:
         }
     }
 
+    std::pair<std::vector<int>, float> HW2Prog(int s, int t){
+
+    }
+
 
 };
+
 #endif //UALGOSPROGRAM2TAKE1_MYGRAPH_H
