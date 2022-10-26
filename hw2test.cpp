@@ -5,9 +5,12 @@
 
 using namespace std;
 
-main()
+int main()
 {
-    ifstream ifile("input.txt");
+    ifstream ifile("prog2test.txt");
+    if (ifile.is_open()){
+        cout << "Worked\n";
+    }
     int n, e, c;
 
     ifile >> n >> e >> c;
@@ -36,21 +39,21 @@ main()
 
     // tht timer will time this for loop
 
-    for (int i = 0; i < p.size(); i++)
-    {
-      pair<vector<int>, float> res = g.HW#Prog(p[i], q[i]);
-      resarray.push_back(res);
-    }
+//    for (int i = 0; i < p.size(); i++)
+//    {
+//      pair<vector<int>, float> res = g.HW2Prog(p[i], q[i]);
+//      resarray.push_back(res);
+//    }
+//
+//    for (int i = 0; i < p.size(); i++)
+//    {
+//	cout << p[i] << " -> " << q[i] << " : Path : ";
+//	for (int j =0; j < resarray[i].first.size(); j++)
+//		cout << resarray[i].first[j] << "  ";
+//	cout << "  annoying-ness : " << resarray[i].second << endl;
+//    }
 
-    for (int i = 0; i < p.size(); i++)
-    {
-	cout << p[i] << " -> " << q[i] << " : Path : ";
-	for (int j =0; j < resarray[i].first.size(); j++)
-		cout << resarray[i].first[j] << "  ";
-	cout << "  annoying-ness : " << resarray[i].second << endl;
-    }
-
-
+    g.Output(cout);
     return(0);
 
 }

@@ -3,4 +3,4 @@ project(uAlgosProgram2Take1)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(uAlgosProgram2Take1 main.cpp MyGraph.h)
+add_executable(uAlgosProgram2Take1 hw2test.cpp MyGraph.h prog2test.txt)
