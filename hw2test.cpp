@@ -24,6 +24,8 @@ int main()
 	    g.AddEdge(s, t, w);
     }
 
+
+
     vector<int> p, q;
     for (int i = 0; i < c; i++)
     {
@@ -54,6 +56,10 @@ int main()
 //    }
 
     g.Output(cout);
-    return(0);
+    cout << "____________\n";
+    g.kruskal();
+
+
+    return 0;
 
 }

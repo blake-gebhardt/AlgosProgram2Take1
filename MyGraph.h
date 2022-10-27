@@ -7,24 +7,33 @@
 
 #include "vector"
 #include "iostream"
-#include "vector"
+#include "algorithm"
 
 using namespace std;
 
 #define edge pair<int, int>
 
 class MyGraph {
-public:
 
 
+private:
     //array of <start, end, weight> values
     vector<pair<int, edge>> edgeList; //graph body
     vector<pair<int, edge>> mst; //mst
-    int *parent;
+
+    int *parent = nullptr;
     int graphSize;
 
-    MyGraph(int n) {
+public:
+
+    MyGraph(int& n) {
         graphSize = n;
+        parent = new int[n+1];
+        for (int i = 0; i < n; i++) {
+            *(parent + i) = i;
+        }
+        edgeList.clear();
+        mst.clear();
     };
 
     MyGraph(const MyGraph &g) {
@@ -34,7 +43,7 @@ public:
         this->graphSize = g.graphSize;
     };
 
-    bool inline AddEdge(int a, int b, float w) {
+    bool inline AddEdge(int& a, int& b, float& w) {
         if ((a > graphSize) || (b > graphSize)) {
             return false;
         } else {
@@ -44,14 +53,16 @@ public:
         }
     }
 
-    int find_set(int i) {
+    int inline find_set(int& i) {
         // If i is the parent of itself
-        if (i == parent[i])
+        int parental = *(parent + i);
+        if (i == *(parent + i)) {
             return i;
-        else
+        } else {
             // Else if i is not the parent of itself
             // Then i is not the representative of thihis set
-            return find_set(parent[i]);
+            return find_set(*(parent + i));
+        }
     }
 
     void inline Output(ostream &os) {
@@ -66,9 +77,28 @@ public:
         }
     }
 
-    void union_set(int u, int v) const {
-        parent[u] = parent[v];
+    void inline union_set(int& u, int& v) const {
+        *(parent + u) = *(parent + v);
     }
+
+
+
+    void inline kruskal() {
+        int i = 0;
+        int uRep = 0;
+        int vRep = 0;
+        sort(edgeList.begin(), edgeList.end());  // increasing weight
+        for (i = 0; i < edgeList.size(); i++) {
+            uRep = find_set(edgeList[i].second.first);
+            vRep = find_set(edgeList[i].second.second);
+            if (uRep != vRep) {
+                mst.push_back(edgeList[i]);  // add to tree
+                union_set(uRep, vRep);
+            }
+        }
+    }
+
+
 
     pair<vector<int>, float> HW2Prog(int s, int t) {
 
