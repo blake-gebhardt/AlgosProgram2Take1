@@ -5,10 +5,9 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     ifstream ifile("prog2test.txt");
-    if (ifile.is_open()){
+    if (ifile.is_open()) {
         cout << "Worked\n";
     }
     int n, e, c;
@@ -16,28 +15,25 @@ int main()
     ifile >> n >> e >> c;
     MyGraph g(n);
 
-    for (int i = 0; i < e; i++)
-    {
-	    int s, t;
-	    float w;
-	    ifile >> s >> t >> w;
-	    g.AddEdge(s, t, w);
+    for (int i = 0; i < e; i++) {
+        int s, t;
+        float w;
+        ifile >> s >> t >> w;
+        g.AddEdge(s, t, w);
     }
 
 
-
     vector<int> p, q;
-    for (int i = 0; i < c; i++)
-    {
-	    int s, t;
-	    ifile >> s >> t;
-	    p.push_back(s);
-	    q.push_back(t);
+    for (int i = 0; i < c; i++) {
+        int s, t;
+        ifile >> s >> t;
+        p.push_back(s);
+        q.push_back(t);
     }
 
     ifile.close();
 
-    vector< pair<vector<int>, float> > resarray;
+    vector<pair<vector<int>, float> > resarray;
 
     // tht timer will time this for loop
 
@@ -58,6 +54,14 @@ int main()
     g.Output(cout);
     cout << "____________\n";
     g.kruskal();
+
+    g.OutputMST(cout);
+
+    if (g.validPath(n, p[0], q[0])) {
+        cout << "\nThere is a path from " << p[0] << " to " << q[0];
+    } else {
+        cout << "\nThere is no path from " << p[0] << " to " << q[0];
+    }
 
 
     return 0;
