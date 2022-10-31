@@ -1,6 +1,7 @@
 //
 // Created by Blake Gebhardt on 25.10.22.
 //
+//Output functions are commented out. If you want to see them, just uncomment
 
 #ifndef UALGOSPROGRAM2TAKE1_MYGRAPH_H
 #define UALGOSPROGRAM2TAKE1_MYGRAPH_H
@@ -159,6 +160,7 @@ public:
         for (int i = 0; i < n; i++) {
             if (vis[i] == 0) {
                 if (dfs(adj, vertices, vis, start, end, maxWeight)) {
+                    //couts for debugging
                     cout << "Path: ";
                     for (auto x: vertices) {
                         cout << x << " ";
@@ -174,14 +176,14 @@ public:
 
     pair<vector<int>, float> HW2Prog(int &s, int &t) {
 
-        cout << "NEW GRAPH\n";
-        cout << "------------\n";
-        this->Output(cout);
-        cout << "____________\n";
+        //cout << "NEW GRAPH\n";
+        //cout << "------------\n";
+        //this->Output(cout);
+        //cout << "____________\n";
         this->kruskal();
-        this->OutputMST(cout);
+        //this->OutputMST(cout);
         this->validPath(graphSize, s, t);
-        cout << "____________\n";
+        //cout << "____________\n";
         return make_pair(finalPath, maxWeight);
 
 
