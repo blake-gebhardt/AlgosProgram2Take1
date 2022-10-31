@@ -37,31 +37,45 @@ int main() {
 
     // tht timer will time this for loop
 
-//    for (int i = 0; i < p.size(); i++)
-//    {
-//      pair<vector<int>, float> res = g.HW2Prog(p[i], q[i]);
-//      resarray.push_back(res);
+    for (int i = 0; i < p.size(); i++)
+    {
+      pair<vector<int>, float> res = g.HW2Prog(p[i], q[i]);
+        g.HW2Prog(p[i], q[i]);
+      resarray.push_back(res);
+    }
+
+    for (int i = 0; i < p.size(); i++)
+    {
+	cout << p[i] << " -> " << q[i] << " : Path : ";
+	for (int j =0; j < resarray[i].first.size(); j++)
+		cout << resarray[i].first[j] << "  ";
+	cout << "  annoying-ness : " << resarray[i].second << endl;
+    }
+
+//    g.Output(cout);
+//    cout << "____________\n";
+//    g.kruskal();
+//
+//    g.OutputMST(cout);
+//
+//    if (g.validPath(n, p[0], q[0])) {
+//        cout << "\nThere is a path from " << p[0] << " to " << q[0];
+//    } else {
+//        cout << "\nThere is no path from " << p[0] << " to " << q[0];
 //    }
 //
-//    for (int i = 0; i < p.size(); i++)
-//    {
-//	cout << p[i] << " -> " << q[i] << " : Path : ";
-//	for (int j =0; j < resarray[i].first.size(); j++)
-//		cout << resarray[i].first[j] << "  ";
-//	cout << "  annoying-ness : " << resarray[i].second << endl;
+//    if (g.validPath(n, p[1], q[1])) {
+//        cout << "\nThere is a path from " << p[1] << " to " << q[1];
+//    } else {
+//        cout << "\nThere is no path from " << p[1] << " to " << q[1];
+//    }
+//
+//    if (g.validPath(n, p[2], q[2])) {
+//        cout << "\nThere is a path from " << p[2] << " to " << q[2];
+//    } else {
+//        cout << "\nThere is no path from " << p[2] << " to " << q[2];
 //    }
 
-    g.Output(cout);
-    cout << "____________\n";
-    g.kruskal();
-
-    g.OutputMST(cout);
-
-    if (g.validPath(n, p[0], q[0])) {
-        cout << "\nThere is a path from " << p[0] << " to " << q[0];
-    } else {
-        cout << "\nThere is no path from " << p[0] << " to " << q[0];
-    }
 
 
     return 0;
