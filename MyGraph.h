@@ -21,10 +21,9 @@ private:
     //array of <start, end, weight> values
     vector<pair<int, edge>> edgeList; //graph body
     vector<pair<int, edge>> mst; //mst
-
     vector<int> finalPath;
-    float maxWeight;
 
+    float maxWeight;
     int *parent = nullptr;
     int graphSize;
 
@@ -51,7 +50,7 @@ public:
         delete parent;
     }
 
-    bool inline AddEdge(int &a, int &b, float &w) {
+    bool inline AddEdge(int a, int b, float w) {
         if ((a > graphSize) || (b > graphSize)) {
             return false;
         } else {
@@ -118,26 +117,31 @@ public:
         }
     }
 
-    bool inline dfs(vector<int> adj[], vector<int> &path, vector<int> &vis, int &start, int &end, float &maxWeight) {
+    bool inline
+    dfs(vector<int> adj[], vector<int> &path, vector<int> &vis, int &start, int &end, float &max, float &prev) {
+
         if (end == start) {
             if (path.back() != end) {
                 path.push_back(end);
             }
             finalPath = path;
-            this->maxWeight = maxWeight;
+            this->maxWeight = max;
             return true;
         }
         vis[start] = 1;
         for (auto it: *(adj + start)) {
             if (vis[it] == 0) {
                 path.push_back(it);
-                if (mst[it - 1].first > maxWeight) {
-                    maxWeight = mst[it - 1].first;
+                if (mst[it - 1].first > max) {
+                    prev = max;
+                    max = mst[it - 1].first;
                 }
-                if (dfs(adj, path, vis, it, end, maxWeight)) {
+                if (dfs(adj, path, vis, it, end, max, prev)) {
                     return true;
+                } else {
+                    max = prev;
+                    path.pop_back();
                 }
-
             }
         }
         return false;
@@ -156,16 +160,18 @@ public:
 
 
         vector<int> vis(n + 1, 0);
-        float maxWeight = 0;
+        float max = 0;
         for (int i = 0; i < n; i++) {
             if (vis[i] == 0) {
-                if (dfs(adj, vertices, vis, start, end, maxWeight)) {
+                float prev = 0;
+                if (dfs(adj, vertices, vis, start, end, max, prev)) {
                     //couts for debugging
+                    maxWeight = max;
                     cout << "Path: ";
                     for (auto x: vertices) {
                         cout << x << " ";
                     }
-                    cout << "\nMax Annoyance: " << maxWeight << "\n";
+                    cout << "\nMax Annoyance: " << this->maxWeight << "\n";
                     return true;
                 }
             }
@@ -174,14 +180,14 @@ public:
     }
 
 
-    pair<vector<int>, float> HW2Prog(int &s, int &t) {
+    pair<vector<int>, float> HW2Prog(int s, int t) {
 
-        //cout << "NEW GRAPH\n";
-        //cout << "------------\n";
-        //this->Output(cout);
-        //cout << "____________\n";
+        cout << "NEW GRAPH\n";
+        cout << "------------\n";
+        this->Output(cout);
+        cout << "____________\n";
         this->kruskal();
-        //this->OutputMST(cout);
+        this->OutputMST(cout);
         this->validPath(graphSize, s, t);
         //cout << "____________\n";
         return make_pair(finalPath, maxWeight);

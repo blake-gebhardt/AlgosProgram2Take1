@@ -52,31 +52,27 @@ int main() {
 	cout << "  annoying-ness : " << resarray[i].second << endl;
     }
 
-//    g.Output(cout);
-//    cout << "____________\n";
-//    g.kruskal();
 //
-//    g.OutputMST(cout);
+//cout << "\n\n\n\n\n\n\n\n\n";
+//    int size = 15;
 //
-//    if (g.validPath(n, p[0], q[0])) {
-//        cout << "\nThere is a path from " << p[0] << " to " << q[0];
-//    } else {
-//        cout << "\nThere is no path from " << p[0] << " to " << q[0];
-//    }
+//    MyGraph newfraph(size);
+//    newfraph.AddEdge(7, 6, 1);
+//    newfraph.AddEdge(8, 2, 2);
+//    newfraph.AddEdge(6, 5, 2);
+//    newfraph.AddEdge(0, 1, 4);
+//    newfraph.AddEdge(2, 5, 4);
+//    newfraph.AddEdge(8, 6, 6);
+//    newfraph.AddEdge(2, 3, 7);
+//    newfraph.AddEdge(7, 8, 7);
+//    newfraph.AddEdge(0, 7, 8);
+//    newfraph.AddEdge(1, 2, 8);
+//    newfraph.AddEdge(3, 4, 9);
+//    newfraph.AddEdge(5, 4, 10);
+//    newfraph.AddEdge(1, 7, 11);
+//    newfraph.AddEdge(3, 5, 14);
 //
-//    if (g.validPath(n, p[1], q[1])) {
-//        cout << "\nThere is a path from " << p[1] << " to " << q[1];
-//    } else {
-//        cout << "\nThere is no path from " << p[1] << " to " << q[1];
-//    }
-//
-//    if (g.validPath(n, p[2], q[2])) {
-//        cout << "\nThere is a path from " << p[2] << " to " << q[2];
-//    } else {
-//        cout << "\nThere is no path from " << p[2] << " to " << q[2];
-//    }
-
-
+//    newfraph.HW2Prog(5,3);
 
     return 0;
 
